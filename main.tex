@@ -1,0 +1,443 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% DOCUMENT INFORMATION
+% Title:
+% Compiler: XeTex (pdfLatex won't work)
+%
+% TEMPLATE INFORMATION
+% Overleaf Example: A quick guide to LaTeX
+% Original Source: Dave Richeson (divisbyzero.com), Dickinson College
+% Modified By: Paul Gessler, Overleaf (overleaf.com)
+% Referral: divisbyzero.com
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[10pt,landscape,letterpaper]{cheatsheet}
+
+\begin{document}
+%------------------------------
+% Title information
+%------------------------------
+\begin{center}
+  {\Large\sffamily\bfseries Topic Cheatsheet for Professional Machine Learning Engineer Beta Exam}  \\
+\end{center}
+
+%% Main body goes here
+\footnotesize
+%\raggedright
+\setlength{\premulticols}{0pt}
+\setlength{\postmulticols}{0pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{1.8em}
+
+\begin{multicols}{3}
+
+%------------------------------
+% Abbreviations
+%------------------------------
+\section{Abbreviations}
+
+\textbf{Common abbreviations}. ML, machine learning; DL, deep learning; AI, artificial intelligence, CV, computer vision; GC(P), Google Cloud (Platform); CI/CD: \href{https://www.redhat.com/en/topics/devops/what-is-ci-cd}{continuous integration / continuous delivery}; SDK, software development kit; API, application programming interface; K8s, Kubernetes; GKE, Google Kubernetes Engine
+
+\textbf{Technical abbreviations}. MLE, maximum likelihood estimation; ROC, receiver-operation curve; AU(RO)C, area under the (receiver-operation) curve
+
+%------------------------------
+% Basic Machine Learning Review
+%------------------------------
+\section{I. ML Prerequisites}
+
+\subsection{Defining an ML Problem}
+
+Relevant \texttt{Study Guide} Sections: 1
+
+Considerations of ML as solutions to business challenges:
+
+\begin{itemize}
+    \item (Re)define business problems
+    \item Consider whether the problem could be solved \emph{without ML}
+    \item Define/anticipate utility of the ML output
+    \item Identify data sources
+    \item Pre-define "success" to solving the business challenge
+    \begin{itemize}
+        \item Metric(s) used to define success
+        \item Key results (product or deliverables)
+        \item Incorrect or low-quality output (i.e. "unsuccessful" models)
+    \end{itemize}
+\end{itemize}
+
+Components of an ML solution:
+
+\begin{itemize}
+    \item Define \emph{Predictive Outcome}
+    \item Identify Problem Type: Supervised (Classification or Regression), Unsupervised, Reinforcement
+    \item Identify Input Feature Format
+    \item Feasibility and implementation
+\end{itemize}
+
+\subsection{Data Preparation}
+
+\textbf{Data Ingestion}: obtaining \& importing data for use or storage
+
+\begin{itemize}
+    \item File input types
+    \item Database maintenance, migration
+    \item Data streaming (e.g. IoT devices)
+\end{itemize}
+
+\textbf{Exploratory Data Analysis} is an important step prior to building any model!
+
+\begin{itemize}
+    \item Evaluation of data quality (domain- and organization-specific knowledge/information may be needed)
+    \item Data visualization (descriptive statistics)
+    \item Inferential statistics (e.g. t-test to compare means, KS-tests to compare distributions) as needed, scale as needed
+\end{itemize}
+
+\textbf{Feature Engineering} may be necessary and/or beneficial in many ML tasks:
+
+\begin{itemize}
+    \item Encoding structured data types
+    \item Feature crosses
+    \item \href{https://scikit-learn.org/stable/modules/feature_selection.html}{Feature selection}, e.g.
+    \begin{itemize}
+        \item Univariate statistical methods (e.g. $\chi^2$ test, t-test/linear model)
+        \item Recursive Feature Elimination (RFE)
+    \end{itemize}
+\end{itemize}
+
+\textbf{Special considerations}:
+
+\begin{itemize}
+    \item Class imbalance
+    \begin{itemize}
+        \item Needs to be \emph{known}, at minimum
+        \item Affects the metrics to employ (e.g. F1 score, AUC would be superior to crude accuracy in imbalanced binary classification)
+        \item Can affect optimization choices: modify objective function; oversampling the minority class(es)
+    \end{itemize}
+    \item Data leakage
+    \begin{itemize}
+        \item Certain features available in your training data might not be available in the unknowns to predict!
+        \item When training, be careful not to include raw or engineered features that are computed from the classification/regression label
+    \end{itemize}
+    \item 
+\end{itemize}
+
+\textbf{Data Pipeline} should be designed \& built in advance for at-scale applications
+
+\begin{itemize}
+    \item \href{https://medium.com/simpl-under-the-hood/data-pipeline-batch-vs-stream-processing-d038bdb29e18}{Batching vs. Streaming}
+        \begin{itemize}
+            \item Use of data from live streams, \textit{single event-focused}
+            \item Use of data stored in data lakes, processed in \textit{periodic} intervals
+        \end{itemize}
+    \item Monitoring deployed pipelines using tools such as \href{https://cloud.google.com/blog/products/management-tools/the-right-metrics-to-monitor-cloud-data-pipelines}{Google Site Reliability Engine (SRE)}
+    \begin{itemize}
+        \item "Four Golden Signals" of your cloud-based service: latency, traffic, error, saturation
+        \item \emph{Cloud Monitoring} (formerly \emph{Stackdriver}): metric set for GC services
+        \item Dashboards (Stackdriver Cloud Monitoring Dashboards API) can be a powerful tool in displaying multiple metrics.
+    \end{itemize}
+    \item Privacy, compliance, legal issues: Know what the restrictions are and plan ahead (e.g. privacy-preserving ML/AI, corrupting input, ...)
+\end{itemize}
+
+%------------------------------
+% 
+%------------------------------
+\section{II. Basic Machine Learning Review [UNDER CONSTRUCTION]}
+
+\subsection{Model Development At-a-Glance}
+
+\subsubsection{Workflow}
+
+\begin{enumerate}
+    \item Training
+    \begin{itemize}
+        \item Choose a model framework
+        \item Consider \emph{Transfer Learning} (if applicable)
+        \item Monitoring / tracking metrics
+        \item Strategies to handle overfitting (e.g. regularization, ensemble learning, drop-out) \& underfitting (increase model complexity)
+        \item Interpretability
+    \end{itemize}
+    \item Validation
+    \begin{itemize}
+        \item Check overfitting \& underfitting
+        \item Compare trained model against pre-defined baseline (e.g. simple model or benchmark)
+        \item Unit tests
+    \end{itemize}
+    \item Scale-up \& Serving**
+    \begin{itemize}
+        \item Unit tests
+        \item Cloud AI model explainability
+        \item Distributed training
+        \item Scalable Model Analysis
+    \end{itemize}
+\end{enumerate}
+
+\subsubsection{Supervised Learning}
+
+\begin{itemize}
+    \item Classification
+    \item Regression
+\end{itemize}
+
+\subsubsection{Unsupervised Learning}
+
+\begin{itemize}
+    \item Clustering
+    \item Dimensionality Reduction
+    \item Data compression / representation
+\end{itemize}
+
+\subsection{Supervised ML}
+% Ref: https://medium.com/machine-learning-in-practice/cheat-sheet-of-machine-learning-and-python-and-math-cheat-sheets-a4afe4e791b6
+
+\textbf{Gradient descent} is used to optimize the \emph{objective functions} of a machine-learning model: 
+
+\begin{tabular}{lll}
+    \toprule
+    \emph{Gradient Descent} & \emph{n} & \emph{Resolution}\\
+    \midrule
+    Full-batch & all (N) & complete \\
+    Mini-batch & 1 < n < N  & intermediate \\
+    Stochastic & 1 & noisy approximation \\
+    \bottomrule\addlinespace
+\end{tabular}
+
+An \emph{epoch} is the number of passes through the entire training dataset, and is a \emph{hyperparameter} to be defined/tuned by the user.
+
+\emph{Naive Bayes}
+
+\emph{Decision Trees}
+
+\emph{Support Vector Machine (SVM)}
+
+\subsubsection{Neural Network \& Deep Learning}
+
+Feed forward neural network
+
+\subsubsection{Convolutional Neural Network (CNN)}
+
+\subsubsection{Recurrent Neural Network}
+
+Language Models
+
+\subsection{ML Models: Unsupervised}
+
+\subsubsection{Clustering}
+
+K-means
+
+Hierarchical Clustering
+
+DBSCAN
+
+Gaussian Mixture Model (GMM)
+
+\emph{Expectation-Maximization (EM)} algorithm can be used solve GMM problems:
+
+\begin{enumerate}
+    \item E step
+    \item M step
+    \item[] Repeat until convergence
+\end{enumerate}
+
+\subsubsection{Autoencoders (deep learning)}
+
+Architecture:
+
+\begin{itemize}
+    \item Encoding layers
+    \item Lower-dimensional representation (returned or used as input for subsequent autoencoder in a stack)
+    \item Decoding layers
+\end{itemize}
+
+Use \emph{backpropagation} and minimize the \emph{reconstruction loss}.
+
+Applications:
+
+\begin{itemize}
+    \item Data representation (can be viewed as feature engineering)
+    \item Dimensionality reduction (can be utilized as a way to compress data)
+\end{itemize}
+
+An issue with autoencoder is to simply \emph{copy the input} (doing so yields loss of 0 but the solution is \emph{trivial}). To address this:
+
+\begin{itemize}
+    \item Undercomplete autoencoder
+    \item De-noising autodencoders
+    \item Sparse autencoders
+\end{itemize}
+
+\subsubsection{Recommendation Systems}
+
+\begin{tabular}{@{}lll@{}}
+\toprule
+                        & \textbf{User info} & \textbf{Domain knowledge} \\ \midrule
+Content-based           &                    & \checkmark                \\
+Collaborative Filtering & \checkmark         &                           \\
+Knowledge-based         &                    & \checkmark                \\ \bottomrule
+\end{tabular}
+
+A \emph{hybrid recommendation systems} uses more than one of the above, though not 100\% possible at all times, it is generally the preferred solution.
+
+\subsection{Regularization}
+
+\subsection{Ensemble Learning}
+
+\subsubsection{Bagging}
+
+\begin{itemize}
+    \item Random Forest: Only the randomly chosen $1 \leq m < M$ features used in split
+    \item Bagged Trees: all $M$ features available used in split
+\end{itemize}
+
+\subsubsection{Boosting}
+
+Gradient Boosted Trees (open-source implementation: \emph{XGBoost})
+
+\section{III. Machine Learning at Scale with Cloud Services}
+
+\subsection{Relevant GCP Tools}
+
+% Ref: Bisong E 2019. Building Machine Learning and Deep Learning Models on Google Cloud Platform: A Comprehensive Guide for Beginners
+
+BigQuery
+
+\begin{itemize}
+    \item Google-managed data warehouse
+    \item Highly scalable, fast, optimized
+    \item Suitable for analysis \& storage of \textit{structured} data
+    \item Multi-processing enabled
+\end{itemize}
+
+Cloud Dataprep: 
+
+\begin{itemize}
+    \item Managed cloud service for quick data exploration \& transformation
+    \item Auto-scalable, eases data-preparation process
+\end{itemize}
+
+Cloud Dataflow: provides serverless, parallel, distributed infrastructure for both \emph{batch} \& \emph{stream} data processing by making use of Apache Beam \textsuperscript{TM}
+
+Cloud ML APIs
+
+\begin{itemize}
+    \item Cloud Vision AI
+    \item Cloud Natural Language
+    \item Cloud Speech to Text
+    \item Cloud Video Intelligence
+\end{itemize}
+
+\subsection{ML Pipeline Automation \& Orchestration}
+
+Virtualization Basics
+
+\begin{itemize}
+    \item Virtual Machines (VMs)
+    \item Containers
+    \begin{itemize}
+        \item Clusters
+        \item Pods
+    \end{itemize}
+    \item Kubernetes (K8s)
+\end{itemize}
+
+\subsection{ML Pipeline Design}
+
+The ML code is only a small part of a \href{https://cloud.google.com/products/operations}{production-level ML system}
+
+\begin{itemize}
+    \item Identify components, parameters, triggers, compute needs
+    \item Orchestration Framework
+    \begin{itemize}
+        \item \href{https://cloud.google.com/composer/docs/concepts/overview}{Cloud Composer} (based on Apache Airflow deployment)
+        \item GCP App Engine
+        \item Cloud Storage
+        \item Cloud Kubernetes Engine
+        \item Cloud Logging \& Monitoring
+    \end{itemize}
+    \item Strategies beyond single cloud:
+    \begin{itemize}
+        \item Hybrid Cloud: blend of public \& private cloud for mixed computing, storage, \& services, allowing for \textit{agility} (i.e. quick adaptation during business digital transformation)
+        \item Multi Cloud: multiple clouds designated for different tasks (*but unlike parallel computing, synchronization across different ventors is NOT essential)
+    \end{itemize}
+\end{itemize}
+
+Procedures during Implementing a Training Pipeline
+
+\begin{itemize}
+    \item Perform data validation (e.g. via \href{https://cloud.google.com/dataprep/docs/html/Validate-Your-Data_57344604}{Cloud Dataprep})
+    \item Decouple components with \href{https://cloud.google.com/cloud-build}{Cloud Build} (fully server-less CI/CD platform supporting any language)
+    \begin{itemize}
+        \item Add layer of technical abstraction
+        \item Separate content producer \& end users
+        \item Ensures software components are not tightly dependent on one another
+    \end{itemize}
+    \item Construct \& test \textit{parametrized pipeline definition} in SDK (e.g. \texttt{gcloud ml-engine})
+    \item Tune compute performance
+    \item Store data \& \href{https://cloud.google.com/cloud-build/docs/building/store-build-artifacts}{generated artifacts} (e.g. binaries, tarballs) via Cloud Storage
+\end{itemize}
+
+%% Source: Coursera GCP: Core Infrastructure, "Comparing Storage Options" lecture
+\begin{tabular}{@{}lllll@{}}
+\toprule
+                & \multicolumn{1}{c}{\textbf{Type}} & \multicolumn{1}{c}{\textbf{Transac.?}} & \multicolumn{1}{c}{\textbf{Complex Que.}} & \multicolumn{1}{c}{\textbf{Capacity}} \\ \midrule
+Cloud Datastore & NoSQL                             & \checkmark                             & \xmark                                           & Terabytes+                            \\
+Bigtable        & NoSQL                             & (limited)                              & \xmark                                           & Petabytes+                            \\
+Cloud Storage   & Blobstore                         & \xmark                                 & \xmark                                           & Petabytes+                            \\
+Cloud SQL       & SQL                               & \checkmark                             & \checkmark                                       & Terabytes                             \\
+Cloud Spanner   & SQL                               & \checkmark                             & \checkmark                                       & Petabytes                             \\
+BigQuery        & SQL                               & \xmark                                 & \checkmark                                       & Petabytes+                            \\ \bottomrule
+\end{tabular}
+
+%% Need help with the following
+Considerations for Implementing the Serving Pipeline
+
+\begin{itemize}
+    \item Model binary options
+    \item Google Cloud serving options
+    \item Testing for target performance
+    \item Setup of trigger \& pipeline schedule
+\end{itemize}
+
+Deployment with CI/CD (\href{https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning#mlops_level_2_cicd_pipeline_automation}{final step in MLOps}), along with 
+
+\begin{itemize}
+    \item \href{https://cloud.google.com/recommendations-ai/docs/a-b-testing}{A/B testing}: \href{https://optimize.withgoogle.com/}{Google Optimize}
+    \item \href{https://cloud.google.com/solutions/automated-canary-analysis-kubernetes-engine-spinnaker}{Canary testing, automated by GKE with Spinnaker}
+\end{itemize}
+
+\subsection{ML Solution Monitoring}
+
+Considerations in monitoring ML solutions:
+
+\begin{enumerate}
+    \item Monitor performance/quality of ML model predictions on an ongoing-basis (via \emphe{Cloud Monitoring} (Compute Engine) with a \href{https://cloud.google.com/monitoring/api/v3/metric-model}{metric model}), and then debug with \href{https://cloud.google.com/debugger}{Cloud Debugger}
+    \item Use robust logging strategies (e.g. \href{https://cloud.google.com/logging}{Cloud Logging}, especially \href{https://cloud.google.com/products/operations}{Stackdriver (aka Cloud Operations)} with beautiful dashboards)
+    \item Establish \textit{continuous evaluation} metrics
+\end{enumerate}
+
+Troubleshoot ML Solutions:
+
+\begin{itemize}
+    \item Permission issues (IAM)
+    \item Training error
+    \item Serving error
+    \item ML system failures/biases (at production)
+\end{itemize}
+
+Tune performance of ML solutions in production
+
+\begin{itemize}
+    \item Simplify (optimize) of \emph{input pipeline}
+    \begin{itemize}
+        \item Reduce data redundancy in NLP model
+        \item \href{https://blog.westerndigital.com/machine-learning-pipeline-object-storage/}{Utilize Cloud Storage (e.g. object storage)}
+        \item Simplification can take place in \href{https://towardsdatascience.com/simplify-machine-learning-workflows-e9d4f404aaeb}{various places} during the pipeline
+    \end{itemize}
+    \item Identify of appropriate \emph{retraining policy} %https://www.kdnuggets.com/2019/12/ultimate-guide-model-retraining.html
+    \begin{itemize}
+        \item Under what circumstance(s)? How often? (e.g. when significant deviation or drift identified; periodically)
+        \item How? (e.g. by batch vs. online learning)
+    \end{itemize}
+\end{itemize}
+
+\end{multicols}
+%\SetWatermarkHorCenter{0.65\paperwidth}
+\end{document}

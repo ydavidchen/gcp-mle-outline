@@ -1,0 +1,56 @@
+# Directories
+data/
+results/
+playground/
+Figures/
+figures/
+venv/
+.IDEA/
+.ipynb_checkpoints
+
+## Privacy
+APIKEY*
+
+# LaTex specific
+*.aux
+*.bbl
+*.blg
+*.lof
+*.lot
+*.log
+*.toc
+*.nlo
+*.syntex
+*.out
+
+# General
+.DS_Store
+.DS_Store?
+.Rhistory
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+*.html
+*.npy
+*.pyc
+*.RData
+*.jpg
+*.jpeg
+*.png
+*.xlsx
+*.xls
+*.csv
+*.ppt
+*.pptx
+*.doc
+*.docx
