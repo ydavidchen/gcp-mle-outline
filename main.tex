@@ -17,7 +17,9 @@
 % Title information
 %------------------------------
 \begin{center}
-  {\Large\sffamily\bfseries Topic Cheatsheet for Professional Machine Learning Engineer Beta Exam}  \\
+  {\Large\sffamily\bfseries Topic Cheatsheet for GCP's Professional Machine Learning Engineer Beta Exam}  \\
+  {\small Authors/contributors: David Chen, PhD} \\
+  {\tiny Credits \& disclaimers can be found in \texttt{README} section of the source repository. Some references are included as \texttt{\%comments} or \href{github.com/ydavidchen/gcp-mle-outline}{hyperlinks} the \LaTex source file.}
 \end{center}
 
 %% Main body goes here
@@ -40,18 +42,16 @@
 \textbf{Technical abbreviations}. MLE, maximum likelihood estimation; ROC, receiver-operation curve; AU(RO)C, area under the (receiver-operation) curve
 
 %------------------------------
-% Basic Machine Learning Review
+% ML Preparations
 %------------------------------
-\section{I. ML Prerequisites}
+\section{I. Preparation for ML}
 
 \subsection{Defining an ML Problem}
 
-Relevant \texttt{Study Guide} Sections: 1
-
-Considerations of ML as solutions to business challenges:
+\subsubsection{ML as Solution to Business Problems}
 
 \begin{itemize}
-    \item (Re)define business problems
+    \item (Re)define your business problems
     \item Consider whether the problem could be solved \emph{without ML}
     \item Define/anticipate utility of the ML output
     \item Identify data sources
@@ -63,7 +63,7 @@ Considerations of ML as solutions to business challenges:
     \end{itemize}
 \end{itemize}
 
-Components of an ML solution:
+\subsubsection{Components of an ML Solution}
 
 \begin{itemize}
     \item Define \emph{Predictive Outcome}
@@ -71,6 +71,25 @@ Components of an ML solution:
     \item Identify Input Feature Format
     \item Feasibility and implementation
 \end{itemize}
+
+\subsection{"Data Science Steps for ML"}
+% Source: https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
+
+\begin{enumerate}
+    \item Data extraction
+    \item Exploratory data analysis
+    \item Data preparation for the ML Task
+    \item Model training
+    \item Model evaluation
+    \item Model validation
+    \item Model serving
+    \begin{itemize}
+        \item Microservices with REST API
+        \item Deployment on mobile devices
+        \item Batch predictions
+    \end{itemize}
+    \item Model monitoring
+\end{enumerate}
 
 \subsection{Data Preparation}
 
@@ -94,7 +113,7 @@ Components of an ML solution:
 
 \begin{itemize}
     \item Encoding structured data types
-    \item Feature crosses
+    \item \href{https://developers.google.com/machine-learning/crash-course/feature-crosses/video-lecture}{Feature Crosses}: used to define a \emph{synthetic feature} when data cannot be linearly separated (e.g. feature cross products $\mathbf{x}_1 \times \mathbf{x}_2$
     \item \href{https://scikit-learn.org/stable/modules/feature_selection.html}{Feature selection}, e.g.
     \begin{itemize}
         \item Univariate statistical methods (e.g. $\chi^2$ test, t-test/linear model)
@@ -137,18 +156,22 @@ Components of an ML solution:
 \end{itemize}
 
 %------------------------------
-% 
+% II. Modeling
 %------------------------------
-\section{II. Basic Machine Learning Review [UNDER CONSTRUCTION]}
+\section{II. ML Model Development}
 
 \subsection{Model Development At-a-Glance}
 
-\subsubsection{Workflow}
+\subsubsection{Generic ML Workflow}
 
 \begin{enumerate}
     \item Training
     \begin{itemize}
         \item Choose a model framework
+        \begin{itemize}
+            \item Supervised 
+            \item Unsupervised
+        \end{itemize}
         \item Consider \emph{Transfer Learning} (if applicable)
         \item Monitoring / tracking metrics
         \item Strategies to handle overfitting (e.g. regularization, ensemble learning, drop-out) \& underfitting (increase model complexity)
@@ -169,22 +192,7 @@ Components of an ML solution:
     \end{itemize}
 \end{enumerate}
 
-\subsubsection{Supervised Learning}
-
-\begin{itemize}
-    \item Classification
-    \item Regression
-\end{itemize}
-
-\subsubsection{Unsupervised Learning}
-
-\begin{itemize}
-    \item Clustering
-    \item Dimensionality Reduction
-    \item Data compression / representation
-\end{itemize}
-
-\subsection{Supervised ML}
+\subsection{ML Models}
 % Ref: https://medium.com/machine-learning-in-practice/cheat-sheet-of-machine-learning-and-python-and-math-cheat-sheets-a4afe4e791b6
 
 \textbf{Gradient descent} is used to optimize the \emph{objective functions} of a machine-learning model: 
@@ -201,70 +209,76 @@ Components of an ML solution:
 
 An \emph{epoch} is the number of passes through the entire training dataset, and is a \emph{hyperparameter} to be defined/tuned by the user.
 
-\emph{Naive Bayes}
 
-\emph{Decision Trees}
+\subsubsection{Supervised Learning (with related concepts)}
 
-\emph{Support Vector Machine (SVM)}
+\begin{itemize}
+    \item Naive Bayes (flavors: Gaussian, Bernoulli, Multinomial)
+    \item Decision trees (concept of \emph{entropy})
+    \item Support Vector Machine (SVM)
+    \begin{itemize}
+        \item Linearly vs. non-linearly separable
+        \item Kernels
+    \end{itemize}
+\end{itemize}
 
-\subsubsection{Neural Network \& Deep Learning}
+\subsubsection{Unsupervised Learning}
 
-Feed forward neural network
+\begin{itemize}
+    \item Clustering
+    \begin{itemize}
+        \item K-means
+        \item Hierarchical Clustering
+        \item DBSCAN
+    \end{itemize}
+    \item Dimensionality reduction
+    \begin{itemize}
+        \item Principal Component Analysis (PCA)
+        \item t-SNE
+    \end{itemize}
+    \item Gaussian Mixture Model (GMM), optimized by \emph{Expectation-Maximization (EM)}:
+    \begin{enumerate}
+        \item E step
+        \item M step
+        \item[] Repeat until convergence
+    \end{enumerate}
+\end{itemize}
 
-\subsubsection{Convolutional Neural Network (CNN)}
+\subsection{Overfitting}
 
-\subsubsection{Recurrent Neural Network}
+\subsubsection{Bias-variance trade-off}
 
-Language Models
+\begin{itemize}
+    \item Characteristics of Loss vs. iteration curves, separately plotted for
+    \begin{itemize}
+        \item Training set
+        \item Validation and/or test set
+    \end{itemize}
+    \item Underfitting vs. overffiting patterns
+\end{itemize}
 
-\subsection{ML Models: Unsupervised}
-
-\subsubsection{Clustering}
-
-K-means
-
-Hierarchical Clustering
-
-DBSCAN
-
-Gaussian Mixture Model (GMM)
-
-\emph{Expectation-Maximization (EM)} algorithm can be used solve GMM problems:
+\subsubsection{Ways to address overfitting}
 
 \begin{enumerate}
-    \item E step
-    \item M step
-    \item[] Repeat until convergence
+    \item Get more high-quality, well-labeled training data
+    \item Regularization
+    \begin{itemize}
+        \item L2 penalty
+        \item L1 (LASSO) penalty
+        \item Elastic net
+    \end{itemize}
+    \item Ensemble learning
+    \begin{itemize}
+        \item Bagging
+        \begin{itemize}
+            \item Random Forest: Only the randomly chosen $1 \leq m < M$ features used in split
+            \item Bagged Trees: all $M$ features available used in split
+        \end{itemize}
+        \item Boosting (e.g. Gradient Boosted Trees/\emph{XGBoost})
+    \end{itemize}
 \end{enumerate}
 
-\subsubsection{Autoencoders (deep learning)}
-
-Architecture:
-
-\begin{itemize}
-    \item Encoding layers
-    \item Lower-dimensional representation (returned or used as input for subsequent autoencoder in a stack)
-    \item Decoding layers
-\end{itemize}
-
-Use \emph{backpropagation} and minimize the \emph{reconstruction loss}.
-
-Applications:
-
-\begin{itemize}
-    \item Data representation (can be viewed as feature engineering)
-    \item Dimensionality reduction (can be utilized as a way to compress data)
-\end{itemize}
-
-An issue with autoencoder is to simply \emph{copy the input} (doing so yields loss of 0 but the solution is \emph{trivial}). To address this:
-
-\begin{itemize}
-    \item Undercomplete autoencoder
-    \item De-noising autodencoders
-    \item Sparse autencoders
-\end{itemize}
-
-\subsubsection{Recommendation Systems}
+\subsection{Recommendation Systems}
 
 \begin{tabular}{@{}lll@{}}
 \toprule
@@ -276,28 +290,68 @@ Knowledge-based         &                    & \checkmark                \\ \bot
 
 A \emph{hybrid recommendation systems} uses more than one of the above, though not 100\% possible at all times, it is generally the preferred solution.
 
-\subsection{Regularization}
+\subsection{Deep Learning}
 
-\subsection{Ensemble Learning}
-
-\subsubsection{Bagging}
+\subsubsection{Subtypes of Neural Networks}
 
 \begin{itemize}
-    \item Random Forest: Only the randomly chosen $1 \leq m < M$ features used in split
-    \item Bagged Trees: all $M$ features available used in split
+    \item Feed forward neural network
+    \item Convolutional Neural Network (CNN) \& computer vision
+    \item Recurrent Neural Network (RNN)
+    \begin{itemize}
+        \item Sequence data (speech/text, time series)
+        \item Vanishing gradient problem
+        \item Gated Recurrent Units (GRU)
+        \item Long-short term memory (LSTM)
+        \item Application to Natural Language Processing (NLP)
+        \begin{itemize}
+            \item Language models
+            \item Embeddings
+            \item Architectures (e.g. transformers)
+        \end{itemize}
+    \end{itemize}
+    \item Autoencoders (deep learning)
+    \begin{itemize}
+        \item General architecture
+        \begin{itemize}
+            \item Encoding layers
+            \item Lower-dimensional representation (returned or used as input for subsequent autoencoder in a stack)
+            \item Decoding layers
+        \end{itemize}
+        \item Flavors to address \emph{trival solutions}:
+        \begin{itemize}
+            \item Undercomplete autoencoder
+            \item De-noising autodencoders
+            \item Sparse autencoders
+        \end{itemize}
+        \item Application
+        \begin{itemize}
+            \item Data representation (feature engineering)
+            \item Dimensionality reduction / data compression
+        \end{itemize}
+\end{itemize}
 \end{itemize}
 
-\subsubsection{Boosting}
+%------------------------------
+% III. ML in Production
+%------------------------------
+\section{III. Production-level ML with Cloud}
 
-Gradient Boosted Trees (open-source implementation: \emph{XGBoost})
+\subsection{MLOps: CI/CD in an ML System}
 
-\section{III. Machine Learning at Scale with Cloud Services}
+\begin{tabular}{@{}llll@{}}
+\toprule
+                  & \multicolumn{1}{c}{\textbf{DevOps}} & \multicolumn{1}{c}{\textbf{Data Engineering}} & \multicolumn{1}{c}{\textbf{MLOps}} \\ \midrule
+Version ctrl.   & Code                                & Code                                          & Code, data, model                  \\
+Pipeline          & -                                   & Data, ETL                                     & Training, serving                  \\
+Validation        & Unit tests                          & Unit tests                                    & Model valid.                   \\
+CI/CD & Production                          & Data pipeline                                 & (both)                             \\ \bottomrule
+\end{tabular}
 
 \subsection{Relevant GCP Tools}
-
 % Ref: Bisong E 2019. Building Machine Learning and Deep Learning Models on Google Cloud Platform: A Comprehensive Guide for Beginners
 
-BigQuery
+\textbf{BigQuery}
 
 \begin{itemize}
     \item Google-managed data warehouse
@@ -377,7 +431,7 @@ Procedures during Implementing a Training Pipeline
 %% Source: Coursera GCP: Core Infrastructure, "Comparing Storage Options" lecture
 \begin{tabular}{@{}lllll@{}}
 \toprule
-                & \multicolumn{1}{c}{\textbf{Type}} & \multicolumn{1}{c}{\textbf{Transac.?}} & \multicolumn{1}{c}{\textbf{Complex Que.}} & \multicolumn{1}{c}{\textbf{Capacity}} \\ \midrule
+                & \multicolumn{1}{c}{\textbf{Type}} & \multicolumn{1}{c}{\textbf{Transac.?}} & \multicolumn{1}{c}{\textbf{Complex Q?}} & \multicolumn{1}{c}{\textbf{Cap.}} \\ \midrule
 Cloud Datastore & NoSQL                             & \checkmark                             & \xmark                                           & Terabytes+                            \\
 Bigtable        & NoSQL                             & (limited)                              & \xmark                                           & Petabytes+                            \\
 Cloud Storage   & Blobstore                         & \xmark                                 & \xmark                                           & Petabytes+                            \\

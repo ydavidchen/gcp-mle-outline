@@ -2,34 +2,47 @@
 
 ## Overview
 
-Welcome to the cheatsheet for studying/review the Professional Machine Learning Engineer Certification exam topics. In this repository, you will find a single, LaTex-based cheatsheet with scientific topics related to the certification exam, which are publicly available.
+Welcome to the cheatsheet for studying/review the Professional Machine Learning Engineer Certification exam topics. In this repository, you will find a single, LaTex-based cheatsheet with scientific topics related to the exam (still in Beta mode at the time of the initial release of this repo).
 
-This cheatsheet was initially intended for folks who:
+The cheatsheet was initially intended for those who have
 
-* Have taken college courses, online courses/MOOCs
-* Have hands-on experience with machine learning algorithms running on your local computers, such as _scikit-learning_ and _Keras_
-* But have _not_ run machine learning algorithms in the cloud
+* Taken college courses, online courses/MOOCs
+* Had hands-on experience with machine learning algorithms running on your local computers, such as _scikit-learning_ and _Keras_
+* Had little experience with production-level ML (e.g. in GCP, AWS)
 
 For this reason, I have re-structured the cheatsheet into **two major themes**:
 
-* ML Prerequisites
-* Review of Basic ML Concepts
-* ML in Cloud
+1. Preparation for ML
+2. ML Model Development
+3. ML in Production
 
-If you are serious about getting well-prepared for this particular exam, (or even feeling a bit bored when staying at home alone during covid-19), consider accepting my challenge of cloning this repository and:
+Section 2 should be familiar to most of the target audience, thus only includes only the relevant topics but not details. I recommend referencing the [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html) and [Keras Developer Guides](https://keras.io/guides/), your favorite 
 
+## Releases
+
+The repository was initially released on `07-16-2020`. It will likely be continuously updated, maintained, and debugged. 
+
+If you are serious about getting well-prepared for this particular exam, (or even feeling a bit bored when staying at home alone during covid-19), consider consider:
+
+* Clone or fork this repository
 * Add or expand sections that you believe important (or areas that you don't feel confident, wanting to learn more, etc.)
 * Make changes or updates (e.g. places where you found typo or error)
 * Or even better, make your own cheatsheet from scratch. Believe me, it isn't about what's on paper/screen but rather the process of making the cheatsheet (doing the research, thinking about the delivery...) that really helps
 
+The template of the cheatsheet is freely available on Overleaf with my customizations.
+
 ### References, Works Cited, Further Readings
 
-* The main guide that led to this cheatsheet is the publicly available exam topic list from the exam provider. In essence, this guide consists of my "answers" or suggested solutions to the topics listed in the official exam topic list.
-* The template of the cheatsheet is freely available on Overleaf with my customizations (presently, I lefted the original template \& watermark as is)
-* Other references include numerous online posts/articles/blogs (e.g. from _Medium.com_, _StackExchange Network_, Wikepedia) and open-source documentations (e.g. _scikit-learn user guide_, various _GCP services/tools documentation_). I purposefully refrained from referring to any textbooks or commercialized resources (though they are excellent resources) due to copyright concerns.
+* The main guide that led to this cheatsheet is the publicly available exam topic list from the exam provider: [official exam guide](https://cloud.google.com/certification/machine-learning-engineer)
+* Other review sources
+ - Google Cloud Training's [Advanced Machine Learning Specialization](https://www.coursera.org/specializations/advanced-machine-learning-tensorflow-gcp), [Data Engineering Certificate](https://www.coursera.org/professional-certificates/gcp-data-engineering), &amp [Architecting with Kubernetes Specialization](https://www.coursera.org/specializations/architecting-google-kubernetes-engine)
+ - [GCP solutions website](https://cloud.google.com/solutions/)
+* Additional references include numerous online posts/articles/blogs (e.g. from _Medium.com_, _StackExchange Network_, Wikepedia) and open-source documentations (e.g. _scikit-learn documentation_, various _GCP services/tools documentation_, articles on _Google Cloud_ website). References are:
+    - Linked as hyperlinks (see source files)
+    - \LaTeX comments
 
-### Important Disclaimers
+### Important Disclaimer
 
-Please note, this cheatsheet is a review of topics publically available outline and description of topics in the exam. The repository does not provide any actual information about the exam itself, which is under strict rules and regulations by the exam provider and the law. In addition, the materials here are for the sole purpose of self-education, and will always be free and open-source. There is no guarantee that the information presented is accurate, typo-free, or up-to-date, so please exercise your discretion. This repository does not represent views from the exam provider or any of my affiliations (e.g. employer, academic institutions, professional groups). Please use materials in this repository and external resources responsibly and respect the licenses and restrictions of the works linked/cited in this repository.
+Please note, this cheatsheet is a review of topics publically available with description. The repository does not provide any actual information about the exam itself. In addition, the materials here are for the sole purpose of self-education, and will always be free and open-source: there is no guarantee that the information presented is accurate, typo-free, or up-to-date. Use at your own discretion. This repository does not represent views from the exam provider or any of my affiliations (e.g. employer, academic institutions, professional groups). Responsibly use resources presented, especially the licenses and restrictions of the works linked/cited.
 
 Copyright &copy; 2020 | David Chen, PhD
