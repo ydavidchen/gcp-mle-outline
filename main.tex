@@ -37,14 +37,31 @@
 %------------------------------
 \section{Abbreviations}
 
-\textbf{Common abbreviations}. ML, machine learning; DL, deep learning; AI, artificial intelligence, CV, computer vision; GC(P), Google Cloud (Platform); CI/CD: \href{https://www.redhat.com/en/topics/devops/what-is-ci-cd}{continuous integration / continuous delivery}; SDK, software development kit; API, application programming interface; K8s, Kubernetes; GKE, Google Kubernetes Engine
-
-\textbf{Technical abbreviations}. MLE, maximum likelihood estimation; ROC, receiver-operation curve; AU(RO)C, area under the (receiver-operation) curve
+\textbf{Common abbreviations}. ML, machine learning; DL, deep learning; AI, artificial intelligence, CV, computer vision; GC(P), Google Cloud (Platform); CI/CD: \href{https://www.redhat.com/en/topics/devops/what-is-ci-cd}{continuous integration / continuous delivery}; SDK, software development kit; API, application programming interface; K8s, Kubernetes; GKE, Google Kubernetes Engine. MLE, maximum likelihood estimation; ROC, receiver-operation curve; AU(RO)C, area under the (receiver-operation) curve
 
 %------------------------------
 % ML Preparations
 %------------------------------
 \section{I. Preparation for ML}
+
+\subsection{Understanding the "Data Science Steps for ML"}
+% Source: https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
+
+\begin{enumerate}
+    \item Data extraction
+    \item Exploratory data analysis
+    \item Data preparation for the ML Task
+    \item Model training
+    \item Model evaluation
+    \item Model validation
+    \item Model serving
+    \begin{itemize}
+        \item Microservices with REST API
+        \item Deployment on mobile devices
+        \item Batch predictions
+    \end{itemize}
+    \item Model monitoring
+\end{enumerate}
 
 \subsection{Defining an ML Problem}
 
@@ -71,37 +88,19 @@
     \item Identify Input Feature Format
     \item Feasibility and implementation
 \end{itemize}
-
-\subsection{"Data Science Steps for ML"}
-% Source: https://cloud.google.com/solutions/machine-learning/mlops-continuous-delivery-and-automation-pipelines-in-machine-learning
-
-\begin{enumerate}
-    \item Data extraction
-    \item Exploratory data analysis
-    \item Data preparation for the ML Task
-    \item Model training
-    \item Model evaluation
-    \item Model validation
-    \item Model serving
-    \begin{itemize}
-        \item Microservices with REST API
-        \item Deployment on mobile devices
-        \item Batch predictions
-    \end{itemize}
-    \item Model monitoring
-\end{enumerate}
-
+ 
 \subsection{Data Preparation}
 
-\textbf{Data Ingestion}: obtaining \& importing data for use or storage
+\subsubsection{Data Ingestion}
 
 \begin{itemize}
+    \item Obtaining \& importing data for use or storage
     \item File input types
     \item Database maintenance, migration
-    \item Data streaming (e.g. IoT devices)
+    \item Streaming data (from IoT devices, databases, or enduser)
 \end{itemize}
 
-\textbf{Exploratory Data Analysis} is an important step prior to building any model!
+\subsubsection{Exploratory Data Analysis (EDA)} 
 
 \begin{itemize}
     \item Evaluation of data quality (domain- and organization-specific knowledge/information may be needed)
@@ -109,9 +108,10 @@
     \item Inferential statistics (e.g. t-test to compare means, KS-tests to compare distributions) as needed, scale as needed
 \end{itemize}
 
-\textbf{Feature Engineering} may be necessary and/or beneficial in many ML tasks:
+\subsubsection{Feature Engineering}
 
 \begin{itemize}
+    \item Necessary (e.g. time series) or beneficial in many ML tasks:
     \item Encoding structured data types
     \item \href{https://developers.google.com/machine-learning/crash-course/feature-crosses/video-lecture}{Feature Crosses}: used to define a \emph{synthetic feature} when data cannot be linearly separated (e.g. feature cross products $\mathbf{x}_1 \times \mathbf{x}_2$
     \item \href{https://scikit-learn.org/stable/modules/feature_selection.html}{Feature selection}, e.g.
@@ -121,38 +121,37 @@
     \end{itemize}
 \end{itemize}
 
-\textbf{Special considerations}:
+\subsubsection{Special considerations}
 
 \begin{itemize}
-    \item Class imbalance
+    \item Imbalanced class distributions
     \begin{itemize}
         \item Needs to be \emph{known}, at minimum
         \item Affects the metrics to employ (e.g. F1 score, AUC would be superior to crude accuracy in imbalanced binary classification)
         \item Can affect optimization choices: modify objective function; oversampling the minority class(es)
     \end{itemize}
-    \item Data leakage
+    \item Data Leakage
     \begin{itemize}
         \item Certain features available in your training data might not be available in the unknowns to predict!
         \item When training, be careful not to include raw or engineered features that are computed from the classification/regression label
     \end{itemize}
-    \item 
 \end{itemize}
 
-\textbf{Data Pipeline} should be designed \& built in advance for at-scale applications
+\subsubsection{Data Pipelines}
 
 \begin{itemize}
+    \item Should be designed \& built in advance for at-scale applications
     \item \href{https://medium.com/simpl-under-the-hood/data-pipeline-batch-vs-stream-processing-d038bdb29e18}{Batching vs. Streaming}
         \begin{itemize}
-            \item Use of data from live streams, \textit{single event-focused}
-            \item Use of data stored in data lakes, processed in \textit{periodic} intervals
+            \item \emph{Batching}: Use of data stored in data lakes, processed in \textit{periodic} intervals
+            \item \emph{Streaming (data streams)}: Use of data from live streams. Unique challenge due to $3Vs$: Volume, Velocity (real-time), Variety (esp. unstructred data) (useful tool: \href{https://cloud.google.com/dataflow/}{Cloud Dataflow})
         \end{itemize}
-    \item Monitoring deployed pipelines using tools such as \href{https://cloud.google.com/blog/products/management-tools/the-right-metrics-to-monitor-cloud-data-pipelines}{Google Site Reliability Engine (SRE)}
+    \item Monitoring
     \begin{itemize}
         \item "Four Golden Signals" of your cloud-based service: latency, traffic, error, saturation
-        \item \emph{Cloud Monitoring} (formerly \emph{Stackdriver}): metric set for GC services
-        \item Dashboards (Stackdriver Cloud Monitoring Dashboards API) can be a powerful tool in displaying multiple metrics.
+        \item Dashboards (Stackdriver Cloud Monitoring Dashboards API) can be a powerful tool in displaying multiple metrics
     \end{itemize}
-    \item Privacy, compliance, legal issues: Know what the restrictions are and plan ahead (e.g. privacy-preserving ML/AI, corrupting input, ...)
+    \item Privacy, compliance, legal issues: Know what the restrictions are and plan ahead (e.g. privacy-preserving ML/AI, corrupting input, ...)(useful tool: \href{https://cloud.google.com/iam}{Cloud IAM})
 \end{itemize}
 
 %------------------------------
@@ -348,39 +347,9 @@ Validation        & Unit tests                          & Unit tests            
 CI/CD & Production                          & Data pipeline                                 & (both)                             \\ \bottomrule
 \end{tabular}
 
-\subsection{Relevant GCP Tools}
-% Ref: Bisong E 2019. Building Machine Learning and Deep Learning Models on Google Cloud Platform: A Comprehensive Guide for Beginners
+\vskip0.1in
 
-\textbf{BigQuery}
-
-\begin{itemize}
-    \item Google-managed data warehouse
-    \item Highly scalable, fast, optimized
-    \item Suitable for analysis \& storage of \textit{structured} data
-    \item Multi-processing enabled
-\end{itemize}
-
-Cloud Dataprep: 
-
-\begin{itemize}
-    \item Managed cloud service for quick data exploration \& transformation
-    \item Auto-scalable, eases data-preparation process
-\end{itemize}
-
-Cloud Dataflow: provides serverless, parallel, distributed infrastructure for both \emph{batch} \& \emph{stream} data processing by making use of Apache Beam \textsuperscript{TM}
-
-Cloud ML APIs
-
-\begin{itemize}
-    \item Cloud Vision AI
-    \item Cloud Natural Language
-    \item Cloud Speech to Text
-    \item Cloud Video Intelligence
-\end{itemize}
-
-\subsection{ML Pipeline Automation \& Orchestration}
-
-Virtualization Basics
+Tools for virtualization:
 
 \begin{itemize}
     \item Virtual Machines (VMs)
@@ -390,6 +359,33 @@ Virtualization Basics
         \item Pods
     \end{itemize}
     \item Kubernetes (K8s)
+\end{itemize}
+
+\vskip0.1in
+
+GCP tools:
+% Ref: Bisong E 2019. Building Machine Learning and Deep Learning Models on Google Cloud Platform: A Comprehensive Guide for Beginners
+\begin{itemize}
+    \item BigQuery
+    \begin{itemize}
+        \item Google-managed data warehouse
+        \item Highly scalable, fast, optimized
+        \item Suitable for analysis \& storage of \textit{structured} data
+        \item Multi-processing enabled
+    \end{itemize}
+    \item Cloud Dataprep
+    \begin{itemize}
+        \item Managed cloud service for quick data exploration \& transformation
+        \item Auto-scalable, eases data-preparation process
+    \end{itemize}
+    \item Cloud Dataflow: provides serverless, parallel, distributed infrastructure for both \emph{batch} \& \emph{stream} data processing by making use of Apache Beam \textsuperscript{TM}
+    \item Cloud ML APIs
+    \begin{itemize}
+        \item Cloud Vision AI
+        \item Cloud Natural Language
+        \item Cloud Speech to Text
+        \item Cloud Video Intelligence
+    \end{itemize}
 \end{itemize}
 
 \subsection{ML Pipeline Design}
