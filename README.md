@@ -10,7 +10,7 @@ The cheatsheet was initially intended for those who have
 * Had hands-on experience with machine learning algorithms running on your local computers, such as _scikit-learning_ and _Keras_
 * Had little experience with production-level ML (e.g. in GCP, AWS)
 
-For this reason, I have re-structured the cheatsheet into **two major themes**:
+For this reason, I have re-structured the cheatsheet into the following **themes (sections)**:
 
 1. Preparation for ML
 2. ML Model Development
@@ -30,20 +30,20 @@ The repository was initially released on `07-16-2020`. It will likely be continu
 
 The template of the cheatsheet is freely available on [Overleaf](https://www.overleaf.com/latex/templates/a-quick-guide-to-latex-overleaf-version/bphpqrdgjyqy) with my customizations.
 
-### References, Works Cited, Further Readings
+## References, Works Cited, Further Readings
 
-* The main guide that led to this cheatsheet is the publicly available exam topic list from the exam provider: [official exam guide](https://cloud.google.com/certification/machine-learning-engineer)
+* The main guide that led to this cheatsheet is the publicly available [official exam guide](https://cloud.google.com/certification/machine-learning-engineer) from the exam provider
 * Google Cloud Training's Coursera courses:
   - [Advanced Machine Learning Specialization](https://www.coursera.org/specializations/advanced-machine-learning-tensorflow-gcp)
   - [Data Engineering Professional Certificate](https://www.coursera.org/professional-certificates/gcp-data-engineering)
   - [Architecting with Kubernetes Specialization](https://www.coursera.org/specializations/architecting-google-kubernetes-engine)
-* [GCP solutions website](https://cloud.google.com/solutions/)
+* [GCP solutions website](https://cloud.google.com/solutions/). I found the "Articles" section was most helpful.
 * Additional references include numerous online posts/articles/blogs (e.g. from _Medium.com_, _StackExchange Network_, Wikepedia) and open-source documentations (e.g. _scikit-learn documentation_, various _GCP services/tools documentation_, articles on _Google Cloud_ website). References are:
   - Linked as hyperlinks (see source files)
-  - Comments in the `main.tex` source code
+  - Comments (tagged `%`) in the `main.tex` source code
 
 ### Important Disclaimer
 
-Please note, this cheatsheet is a review of topics publicly available with description. The repository does not provide any actual information about the exam itself. In addition, the materials here are for the sole purpose of self-education, and will always be free and open-source: there is no guarantee that the information presented is accurate, typo-free, or up-to-date. Use at your own discretion. This repository does not represent views from the exam provider or any of my affiliations (e.g. employer, academic institutions, professional groups). Responsibly use resources presented, especially the licenses and restrictions of the works linked/cited.
+Please note, this cheatsheet is a review of topics publicly available with description, and does NOT provide any actual information about the exam itself. The materials here are for the sole purpose of self-education, and will always be free &amp; open-source. There is no guarantee that the information presented is accurate or up-to-date. Use at your own discretion. Additionally, this repository does not represent views from the exam provider or any of my affiliations ( employer, academic institutions, groups, etc.). Responsibly use resources presented, especially the external resources linked/cited.
 
 Copyright &copy; 2020 | David Chen, PhD
