@@ -1,10 +1,10 @@
-# Review Notes for Professional Machine Learning Engineer Certification Exam Topics
+# Review Notes for GCP's Professional Machine Learning Engineer Certification Exam Topics
 
 ## Overview
 
-Welcome to the cheatsheet for studying/review the Professional Machine Learning Engineer Certification exam topics. In this repository, you will find a single, LaTex-based cheatsheet with scientific topics related to the exam (still in Beta mode at the time of the initial release of this repo).
+Welcome to the cheatsheet for studying/review the Professional Machine Learning Engineer Certification exam topics! In this repository, you will find a two-page LaTex-written cheatsheet with topics related to the exam (still in Beta mode at the time of the initial release of this repo).
 
-The cheatsheet was initially intended for those who have
+The cheatsheet was initially intended for those who have:
 
 * Taken college courses, online courses/MOOCs in data science &amp; machine learning
 * Had hands-on experience with machine learning algorithms running on your local computers, such as _scikit-learning_ and _Keras_
@@ -16,8 +16,9 @@ For this reason, I have re-structured the cheatsheet into the following **themes
 2. ML Model Development
 3. ML in Production
 
-Section 2 should be familiar to most of the target audience, thus only includes only the relevant topics but not details. I recommend referencing the [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html) and [Keras Developer Guides](https://keras.io/guides/), your favorite
+In particular, Section 2 should be familiar to most of the target audience, and thus it only includes only the relevant topics but not details. 
 
+I highly recommend referencing the [scikit-learn User Guide](https://scikit-learn.org/stable/user_guide.html) and [Keras Developer Guides](https://keras.io/guides/) as needed.
 
 ## Releases
 
@@ -30,7 +31,9 @@ The repository was initially released on `07-16-2020`. It will likely be continu
 
 The template of the cheatsheet is freely available on [Overleaf](https://www.overleaf.com/latex/templates/a-quick-guide-to-latex-overleaf-version/bphpqrdgjyqy) with my customizations.
 
-## References, Works Cited, Further Readings
+## Endnotes
+
+### References &amp; Works Cited
 
 * The main guide that led to this cheatsheet is the publicly available [official exam guide](https://cloud.google.com/certification/machine-learning-engineer) from the exam provider
 * Google Cloud Training's Coursera courses:
